@@ -1,7 +1,7 @@
 from django.test import SimpleTestCase, TestCase
 from django.urls import reverse, resolve
 
-from .views import HomePageView
+from .views import HomePageView, AboutPageView
 
 class HomePageTest(SimpleTestCase):
   def test_url_exist_at_correct_location(self):
@@ -28,4 +28,17 @@ class HomePageTest(SimpleTestCase):
     view = resolve('/')
     self.assertEqual(view.func.__name__, HomePageView.as_view().__name__)
 
-# Create your tests here.
+class AboutPageTest(SimpleTestCase):
+  def setUp(self):
+    url = reverse('about')
+    self.response = self.client.get(url)
+    
+  def test_aboutpage(self):
+    self.assertEqual(self.response.status_code, 200)
+    self.assertTemplateUsed(self.response, 'about.html')
+    self.assertContains(self.response, 'About Page')
+    self.assertNotContains(self.response, 'this is not in the page content')
+  def test_about_page_url_resolves_aboutpageview(self):
+    
+    view = resolve('/about/')
+    self.assertEqual(view.func.__name__, AboutPageView.as_view().__name__)
