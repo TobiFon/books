@@ -4,12 +4,14 @@
 <h1>This is our home page.</h1>
 {% if user.is_authenticated %}
 <p>Hi {{ user.email }}!</p>
-<form action="{% url 'logout' %}" method="post">
-  {% csrf_token %}
-  <button type="submit">Logout</button>
+<a href="{% url 'account_logout' %}">logout</a>
+{% comment %}
+<form action="{% url 'account_logout' %}" method="post">
+  {% endcomment %} {% comment %} {% csrf_token %} {% endcomment %} {% comment %}
+  <button type="submit">Logout</button> {% endcomment %} {% comment %}
 </form>
-{% else %}
+{% endcomment %} {% else %}
 <p>You are not logged in</p>
-<a href="{% url 'login' %}">Log In</a>
-<a href="{% url 'signup' %}">Sign Up</a>
+<a href="{% url 'account_login' %}">Log In</a>
+<a href="{% url 'account_signup' %}">Sign Up</a>
 {% endif %} {% endblock content %}

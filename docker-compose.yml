@@ -7,6 +7,9 @@ services:
       - .:/code
     ports:
       - 8000:8000
+    environment:
+      - "DJANGO_SECRET_KEY=django-insecure-%)dyx^e*s&t^fg$13x8^ctcc^bq10r-qfnoiqgp6)!7yy+nzqg"
+      - "DJANGO_DEBUG=True"
     depends_on:
       - db
   db:
