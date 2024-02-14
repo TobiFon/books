@@ -42,11 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
+
     
     # project apps
     'accounts',
     'pages',
+    'books',
     
     #3rd party libraries
     'allauth',
@@ -155,3 +156,5 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 DEBUG = env.bool("DJANGO_DEBUG")
 ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1"]
+
+DEFAULT_FROM_EMAIL = "admin@djangobookstore.com"
